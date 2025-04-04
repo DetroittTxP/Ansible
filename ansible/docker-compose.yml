@@ -36,7 +36,7 @@ services:
       - 9001:80
     networks:
       - awx
-      
+
 networks:
   awx:
-    # external: true
+    external: true

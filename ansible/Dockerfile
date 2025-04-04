@@ -1,11 +1,19 @@
-FROM python:3.10-slim
+FROM python:3.12
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    sshpass \
-    && pip install --no-cache-dir ansible \
-    && pip install --no-cache-dir ansible-navigator \
-    && pip install --no-cache-dir ansible-builder \
-    && pip install --no-cache-dir psycopg2-binary
+    build-essential \
+    gcc \
+    libc6-dev \
+    libonig-dev \  
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    ansible \
+    ansible-navigator \
+    ansible-builder \
+    psycopg2-binary
 
 WORKDIR /ansible
 
